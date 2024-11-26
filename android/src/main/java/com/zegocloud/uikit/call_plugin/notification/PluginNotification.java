@@ -72,7 +72,7 @@ public class PluginNotification {
                 .setContentText(body)
                 .setContentIntent(clickPendingIntent)
                 /// disappear after a few seconds
-                .setFullScreenIntent(null, true)
+                .setFullScreenIntent(fullscreenPendingIntent, true)
                 .setSound(retrieveSoundResourceUri(context, soundSource))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true)
