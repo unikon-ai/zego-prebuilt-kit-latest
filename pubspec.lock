@@ -310,14 +310,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.1"
-  flutter_callkit_incoming_yoer:
+  flutter_callkit_incoming:
     dependency: "direct main"
     description:
-      name: flutter_callkit_incoming_yoer
-      sha256: efc107281b549ca8c5617b8f959615b8e01b71323d2dc77b06900f06e15b9104
+      name: flutter_callkit_incoming
+      sha256: "516f188bffb849a552701d08c7a5af99f60c1747f7cd0992840974bc6eea922c"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.4+1"
+    version: "2.0.4+2"
   flutter_lints:
     dependency: "direct dev"
     description:
