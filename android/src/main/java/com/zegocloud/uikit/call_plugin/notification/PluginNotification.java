@@ -66,7 +66,8 @@ public class PluginNotification {
         clickIntent.setAction(Defines.ACTION_CLICK_IM);
         clickIntent.putExtra(Defines.FLUTTER_PARAM_NOTIFICATION_ID, notificationId);
         PendingIntent clickPendingIntent = PendingIntent.getBroadcast(context, 0, clickIntent, flags);
-
+        Intent fullscreenIntent = new Intent();
+        PendingIntent fullscreenPendingIntent = PendingIntent.getBroadcast(context, 0, fullscreenIntent, flags);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelID)
                 .setContentTitle(title)
                 .setContentText(body)
