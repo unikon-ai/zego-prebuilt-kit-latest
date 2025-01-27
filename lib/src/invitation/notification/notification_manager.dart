@@ -335,7 +335,7 @@ class ZegoCallInvitationNotificationManager {
           vibrate: callInvitationData.notificationConfig
                   .androidNotificationConfig?.callChannel.vibrate ??
               true,
-          title: invitationData.inviter?.name ?? 'unknown',
+          title: "Randome USERRrrrr",
           content: ZegoCallInvitationType.videoCall == invitationData.type
               ? ((invitationData.invitees.length > 1
                   ? callInvitationData
