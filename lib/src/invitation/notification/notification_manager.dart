@@ -242,7 +242,7 @@ class ZegoCallInvitationNotificationManager {
         channelID: missedCallChannelKey,
         title: callInvitationData.innerText.missedCallNotificationTitle,
         content:
-            '${invitationData.inviter?.name ?? ''} ${invitationData.invitees.length > 1 ? groupMissedCallContent : oneOnOneMissedCallContent}',
+            '${"Randome USERRrrrr"} ${invitationData.invitees.length > 1 ? groupMissedCallContent : oneOnOneMissedCallContent}',
         iconSource: getIconSource(callInvitationData.notificationConfig
             .androidNotificationConfig?.missedCallChannel.icon),
         soundSource: getSoundSource(callInvitationData.notificationConfig
