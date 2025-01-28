@@ -1,4 +1,5 @@
 // Dart imports:
+import 'dart:convert';
 import 'dart:io' show Platform;
 import 'dart:math';
 
@@ -227,7 +228,9 @@ class ZegoCallInvitationNotificationManager {
       tag: 'call-invitation',
       subTag: 'notification manager, missed call notification',
     );
-
+    Map<String, dynamic> customData = jsonDecode(invitationData.customData);
+    String userName =
+        customData['show_anonymous_name'] ?? invitationData.inviter?.name ?? '';
     final groupMissedCallContent = ZegoCallInvitationType.videoCall ==
             invitationData.type
         ? callInvitationData.innerText.missedGroupVideoCallNotificationContent
@@ -242,7 +245,7 @@ class ZegoCallInvitationNotificationManager {
         channelID: missedCallChannelKey,
         title: callInvitationData.innerText.missedCallNotificationTitle,
         content:
-            '${"Randome USERRrrrr"} ${invitationData.invitees.length > 1 ? groupMissedCallContent : oneOnOneMissedCallContent}',
+            '$userName ${invitationData.invitees.length > 1 ? groupMissedCallContent : oneOnOneMissedCallContent}',
         iconSource: getIconSource(callInvitationData.notificationConfig
             .androidNotificationConfig?.missedCallChannel.icon),
         soundSource: getSoundSource(callInvitationData.notificationConfig
@@ -323,7 +326,9 @@ class ZegoCallInvitationNotificationManager {
     cancelInvitationNotification();
 
     ZegoCallInvitationNotificationManager.hasInvitation = true;
-
+    Map<String, dynamic> customData = jsonDecode(invitationData.customData);
+    String userName =
+        customData['show_anonymous_name'] ?? invitationData.inviter?.name ?? '';
     ZegoCallPluginPlatform.instance.addLocalCallNotification(
       ZegoSignalingPluginLocalCallNotificationConfig(
           id: _callInvitationNotificationID,
@@ -335,7 +340,7 @@ class ZegoCallInvitationNotificationManager {
           vibrate: callInvitationData.notificationConfig
                   .androidNotificationConfig?.callChannel.vibrate ??
               true,
-          title: "Randome USERRrrrr",
+          title: userName,
           content: ZegoCallInvitationType.videoCall == invitationData.type
               ? ((invitationData.invitees.length > 1
                   ? callInvitationData
