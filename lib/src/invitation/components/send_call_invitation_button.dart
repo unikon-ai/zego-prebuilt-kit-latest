@@ -248,6 +248,7 @@ class _ZegoSendCallInvitationButtonState
               widget.invitees.map((e) => ZegoCallUser(e.id, e.name)).toList(),
           isVideoCall: widget.isVideoCall,
           innerText: innerText,
+          customdata: widget.customData,
         ),
         message: getNotificationMessage(
           defaultMessage: widget.notificationMessage,

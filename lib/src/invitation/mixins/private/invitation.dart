@@ -158,6 +158,7 @@ class ZegoCallInvitationServiceAPIPrivateImpl {
               callees: callees,
               isVideoCall: isVideoCall,
               innerText: _innerText,
+              customdata: customData,
             ),
             message: getNotificationMessage(
               defaultMessage: notificationMessage,
@@ -243,6 +244,7 @@ class ZegoCallInvitationServiceAPIPrivateImpl {
         callees: callees,
         isVideoCall: isVideoCall,
         innerText: _innerText,
+        customdata: customData
       ),
       message: getNotificationMessage(
         defaultMessage: notificationMessage,

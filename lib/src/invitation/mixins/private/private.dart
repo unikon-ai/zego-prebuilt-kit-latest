@@ -747,6 +747,8 @@ class ZegoCallInvitationServicePrivateImpl
         .getAdvanceInitiator(invitationData.invitationID)
         ?.userID;
 
+    
+
     ZegoLoggerService.logInfo(
       'callInitiatorUserID:$callInitiatorUserID, '
       'invitationData:$invitationData, '
@@ -775,6 +777,7 @@ class ZegoCallInvitationServicePrivateImpl
               .toList(),
           isVideoCall: isVideoCall,
           innerText: callInvitationData?.innerText,
+          customdata: invitationData.customData,
         ),
         message: getNotificationMessage(
           defaultMessage: localInvitationParameter?.notificationMessage,

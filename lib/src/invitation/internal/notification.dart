@@ -1,4 +1,6 @@
 // Package imports:
+import 'dart:convert';
+
 import 'package:zego_uikit/zego_uikit.dart';
 
 // Project imports:
@@ -10,7 +12,10 @@ String getNotificationTitle({
   required List<ZegoCallUser> callees,
   required bool isVideoCall,
   required ZegoCallInvitationInnerText? innerText,
+  required String customdata,
 }) {
+  Map<String, dynamic> customDataParsed = jsonDecode(customdata);
+  String? anonymousName = customDataParsed['show_anonymous_name'];
   return defaultTitle ??
       (isVideoCall
               ? ((callees.length > 1
@@ -21,7 +26,8 @@ String getNotificationTitle({
                       ? innerText?.incomingGroupVoiceCallDialogTitle
                       : innerText?.incomingVoiceCallDialogTitle) ??
                   param_1))
-          .replaceFirst(param_1, ZegoUIKit().getLocalUser().name);
+          .replaceFirst(
+              param_1, anonymousName ?? ZegoUIKit().getLocalUser().name);
 }
 
 String getNotificationMessage({
