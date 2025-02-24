@@ -130,9 +130,9 @@ class _ZegoCallInvitationNotifyDialogState
   }
 
   Widget userName() {
-        Map<String, dynamic> customData =
+        Map<String, dynamic>? customData =
         jsonDecode(widget.invitationData.customData);
-    String userName = customData['show_anonymous_name'] ??
+    String userName = customData?['show_anonymous_name'] ??
         widget.invitationData.inviter?.name ??
         '';
     return SizedBox(

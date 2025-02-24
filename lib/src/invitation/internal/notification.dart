@@ -12,10 +12,16 @@ String getNotificationTitle({
   required List<ZegoCallUser> callees,
   required bool isVideoCall,
   required ZegoCallInvitationInnerText? innerText,
-  required String customdata,
+  String? customdata,
 }) {
-  Map<String, dynamic> customDataParsed = jsonDecode(customdata);
-  String? anonymousName = customDataParsed['show_anonymous_name'];
+  Map<String, dynamic>? customDataParsed;
+  if (customdata != null) {
+    customDataParsed = jsonDecode(customdata);
+  }
+  String? anonymousName;
+  if (customDataParsed != null) {
+    anonymousName = customDataParsed['show_anonymous_name'];
+  }
   return defaultTitle ??
       (isVideoCall
               ? ((callees.length > 1

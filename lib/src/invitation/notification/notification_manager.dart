@@ -228,9 +228,9 @@ class ZegoCallInvitationNotificationManager {
       tag: 'call-invitation',
       subTag: 'notification manager, missed call notification',
     );
-    Map<String, dynamic> customData = jsonDecode(invitationData.customData);
+    Map<String, dynamic>? customData = jsonDecode(invitationData.customData);
     String userName =
-        customData['show_anonymous_name'] ?? invitationData.inviter?.name ?? '';
+        customData?['show_anonymous_name'] ?? invitationData.inviter?.name ?? '';
     final groupMissedCallContent = ZegoCallInvitationType.videoCall ==
             invitationData.type
         ? callInvitationData.innerText.missedGroupVideoCallNotificationContent
@@ -326,9 +326,9 @@ class ZegoCallInvitationNotificationManager {
     cancelInvitationNotification();
 
     ZegoCallInvitationNotificationManager.hasInvitation = true;
-    Map<String, dynamic> customData = jsonDecode(invitationData.customData);
+    Map<String, dynamic>? customData = jsonDecode(invitationData.customData);
     String userName =
-        customData['show_anonymous_name'] ?? invitationData.inviter?.name ?? '';
+        customData?['show_anonymous_name'] ?? invitationData.inviter?.name ?? '';
     ZegoCallPluginPlatform.instance.addLocalCallNotification(
       ZegoSignalingPluginLocalCallNotificationConfig(
           id: _callInvitationNotificationID,
