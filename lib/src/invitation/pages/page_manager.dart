@@ -1020,6 +1020,7 @@ class ZegoCallInvitationPageManager {
                     '',
                 iOSIconName: callInvitationData.notificationConfig
                     .iOSNotificationConfig?.systemCallingIconName,
+                customData: params,
               );
             }
           });

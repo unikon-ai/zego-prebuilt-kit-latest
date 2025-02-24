@@ -49,6 +49,7 @@ Future<CallKitParams> _makeCallKitParam({
   String? body,
   String? ringtonePath,
   String? iOSIconName,
+  Map<String,dynamic>? customData
 }) async {
   final prefs = await SharedPreferences.getInstance();
 
@@ -59,7 +60,7 @@ Future<CallKitParams> _makeCallKitParam({
             CallKitInnerVariable.ringtonePath.defaultValue;
   }
 
-  var tempTitle = title ?? '';
+  var tempTitle = 'RandomUserrrrrr';
   if (tempTitle.isEmpty) {
     tempTitle = caller?.name ?? '';
   }
@@ -149,6 +150,7 @@ Future<void> showCallkitIncoming({
   String? title,
   String? body,
   String? iOSIconName,
+  Map<String,dynamic>? customData,
 }) async {
   final callKitParam = await _makeCallKitParam(
     caller: caller,
@@ -158,6 +160,7 @@ Future<void> showCallkitIncoming({
     title: title,
     body: body,
     iOSIconName: iOSIconName,
+    customData: customData,
   );
 
   ZegoLoggerService.logInfo(
