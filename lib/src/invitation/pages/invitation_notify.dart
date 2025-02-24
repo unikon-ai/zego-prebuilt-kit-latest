@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -128,6 +130,11 @@ class _ZegoCallInvitationNotifyDialogState
   }
 
   Widget userName() {
+    Map<String, dynamic> customData =
+        jsonDecode(widget.invitationData.customData);
+    String userName = customData['show_anonymous_name'] ??
+        widget.invitationData.inviter?.name ??
+        '';
     return SizedBox(
       width: 350.zW,
       child: Text(
@@ -142,7 +149,7 @@ class _ZegoCallInvitationNotifyDialogState
                         .incomingGroupVoiceCallDialogTitle
                     : widget.callInvitationConfig.innerText
                         .incomingVoiceCallDialogTitle))
-            .replaceFirst(param_1, widget.invitationData.inviter?.name ?? ''),
+            .replaceFirst(param_1, userName),
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.left,
         style: TextStyle(
