@@ -1,6 +1,8 @@
 // Package imports:
 
 // Package imports:
+import 'dart:convert';
+
 import 'package:flutter_callkit_incoming/entities/android_params.dart';
 import 'package:flutter_callkit_incoming/entities/call_kit_params.dart';
 import 'package:flutter_callkit_incoming/entities/ios_params.dart';
@@ -41,16 +43,15 @@ const String callkitMissedCalIDCacheKey = 'callkit_missed_call_id';
 ///             }
 /// 	}
 /// }
-Future<CallKitParams> _makeCallKitParam({
-  required ZegoUIKitUser? caller,
-  required ZegoCallInvitationType callType,
-  required ZegoCallInvitationSendRequestProtocol sendRequestProtocol,
-  String? title,
-  String? body,
-  String? ringtonePath,
-  String? iOSIconName,
-  Map<String,dynamic>? customData
-}) async {
+Future<CallKitParams> _makeCallKitParam(
+    {required ZegoUIKitUser? caller,
+    required ZegoCallInvitationType callType,
+    required ZegoCallInvitationSendRequestProtocol sendRequestProtocol,
+    String? title,
+    String? body,
+    String? ringtonePath,
+    String? iOSIconName,
+    String? customData}) async {
   final prefs = await SharedPreferences.getInstance();
 
   var tempRingtonePath = ringtonePath ?? '';
@@ -59,8 +60,12 @@ Future<CallKitParams> _makeCallKitParam({
         prefs.getString(CallKitInnerVariable.ringtonePath.cacheKey) ??
             CallKitInnerVariable.ringtonePath.defaultValue;
   }
+  var tempTitle = '';
 
-  var tempTitle = 'RandomUserrrrrr';
+  if (customData != null) {
+    Map<String, dynamic> customDataParsed = jsonDecode(customData);
+    tempTitle = customDataParsed['show_anonymous_name'] ?? '';
+  }
   if (tempTitle.isEmpty) {
     tempTitle = caller?.name ?? '';
   }
@@ -150,7 +155,7 @@ Future<void> showCallkitIncoming({
   String? title,
   String? body,
   String? iOSIconName,
-  Map<String,dynamic>? customData,
+  String? customData,
 }) async {
   final callKitParam = await _makeCallKitParam(
     caller: caller,

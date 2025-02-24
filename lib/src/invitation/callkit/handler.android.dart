@@ -637,7 +637,7 @@ Future<void> _onBackgroundOfflineCall({
       sendRequestProtocol: callSendRequestProtocol,
       title: messageExtras['title'] as String? ?? '',
       body: messageExtras['body'] as String? ?? '',
-      customData: messageExtras,
+      customData: messageExtras.toString(),
     );
   }
 }
